@@ -31,6 +31,7 @@
                         <h3>订单编号：{{order.order_id}}</h3>
                         {{ if 3 == order.status }}
                         <div class="fr order-operate">
+                            <button type="button" class="btn btn-success order-comment" data-toggle="modal" data-target="#comment-modal">发表评价</button>
                         </div>
                         {{/if}}
                     </div>

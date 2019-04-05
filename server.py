@@ -3,7 +3,7 @@ import tornado.ioloop
 import tornado.options
 import tornado.httpserver
 import os
-import torndb
+import pymysql
 import config
 import redis
 
@@ -17,7 +17,9 @@ define ("port", type=int, default = 8002, help="qidong duan kou")
 class Application(tornado.web.Application):
     def __init__(self,*args, **kwargs):
         super(Application,self).__init__(*args, **kwargs)
-        self.db = torndb.Connection(**config.mysql_options)
+        # config里面是字典，可以用这个**config.mysql_options方式将参数传进去
+        conn = pymysql.Connect(**config.mysql_options)
+        self.db = conn.cursor(cursor=pymysql.cursors.DictCursor)
         self.redis = redis.StrictRedis(**config.redis_options)
 
 def main():

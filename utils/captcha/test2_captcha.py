@@ -22,6 +22,7 @@ class newVerifyCode():
             return random.sample(self._letter_cases,length)
 
         def creat_line():
+            line_num = random.randint(*n_line)#sign that the param is a list
 
             for i in range(line_num):
                 begin = (random.randint(0, size[0]), random.randint(0, size[1]))
@@ -67,3 +68,7 @@ class newVerifyCode():
         img = img.transform(size, Image.PERSPECTIVE, params)
         img = img.filter(ImageFilter.EDGE_ENHANCE_MORE)
         return img, strs
+#生产图片，返回图片二进制和图片内容
+# if __name__ == '__main__':
+#     code_img,capacha_code= creat_validata_code()
+#     code_img.save('xx.jpg','JPEG')
